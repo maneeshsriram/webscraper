@@ -9,6 +9,8 @@ psycopg2 = "*"
 bs4 = "*"
 pandas = "*"
 requests = "*"
+selenium = "*"
+webdriver-manager = "*"
 
 [dev-packages]
 

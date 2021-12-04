@@ -1,3 +1,4 @@
+from selenium import webdriver
 from django.shortcuts import render
 from bs4 import BeautifulSoup as bs4
 import requests
@@ -5,7 +6,9 @@ import pandas as pd
 import random as r
 import time
 import os
+from webdriver_manager.chrome import ChromeDriverManager
 
+ 
 
 
 def ebay(request):
@@ -98,7 +101,6 @@ def flipkart(request):
         products = []
         prices = []
         rates = []
-        no_of_rates = []
         quantities = []
         des = []
         
@@ -130,10 +132,6 @@ def flipkart(request):
                 if(rate != None):
                     rate = rate.get_text()
 
-                no_of_rate = a.find('span', class_='_2_R_DZ')
-                if(no_of_rate != None):
-                    no_of_rate = no_of_rate.get_text()
-
                 quantity = a.find('div', class_='_3Djpdu')
                 if(quantity != None):
                     quantity = quantity.get_text()
@@ -141,7 +139,6 @@ def flipkart(request):
                 products.append(name)
                 prices.append(price)
                 rates.append(rate)
-                no_of_rates.append(no_of_rate)
                 quantities.append(quantities)
             for a in soup.find_all('div', class_="_1xHGtK _373qXS"):
                     name = a.find('a', class_=['IRpwTa _2-ICcC', 'IRpwTa'])
@@ -152,17 +149,10 @@ def flipkart(request):
                     if(price != None):
                         price = price.get_text()
 
-                    de = a.find('div', class_='_3eWWd-')
-                    if(de != None):
-                        de = de.get_text()
-
                     rate = a.find('div', class_='_3LWZlK')
                     if(rate != None):
                         rate = rate.get_text()
 
-                    no_of_rate = a.find('span', class_='_2_R_DZ')
-                    if(no_of_rate != None):
-                        no_of_rate = no_of_rate.get_text()
 
                     quantity = a.find('div', class_='_3Djpdu')
                     if(quantity != None):
@@ -171,8 +161,6 @@ def flipkart(request):
                     products.append(name)
                     prices.append(price)
                     rates.append(rate)
-                    des.append(de)
-                    no_of_rates.append(no_of_rate)
                     quantities.append(quantities)
             for a in soup.find_all('div', class_="_2kHMtA"):
                     name = a.find('div', class_="_4rR01T")
@@ -183,17 +171,9 @@ def flipkart(request):
                     if(price != None):
                         price = price.get_text()
 
-                    de = a.find('div', class_='_3eWWd-')
-                    if(de != None):
-                        de = de.get_text()
-
                     rate = a.find('div', class_='_3LWZlK')
                     if(rate != None):
                         rate = rate.get_text()
-
-                    no_of_rate = a.find('span', class_='_2_R_DZ')
-                    if(no_of_rate != None):
-                        no_of_rate = no_of_rate.get_text()
 
                     quantity = a.find('div', class_='_3Djpdu')
                     if(quantity != None):
@@ -202,17 +182,56 @@ def flipkart(request):
                     products.append(name)
                     prices.append(price)
                     rates.append(rate)
-                    des.append(de)
-                    no_of_rates.append(no_of_rate)
                     quantities.append(quantities)
 
         if str(page) == "<Response [200]>":
             df = pd.DataFrame({"Products": products, "Price": prices,
-                        "Rate": rates, "no_of_rates": no_of_rate, "Description": des})
+                        "Rate": rates, })
             df.to_csv("C:/Users/manee/Desktop/flipkart.csv", index=False)
 
     return render(request, 'webpages/flipkart.html')
 
+
+def flipkartReview(request):
+    if request.method == "POST":
+        link = request.POST['url']
+        pages = int(request.POST['pages'])
+        names = []
+        reviews = []
+        keywords = []
+        link = link.replace("/p/", "/product-reviews/")
+        link = link+"&page={page_number}"
+        for i in range(1, pages+1):    # number of page number
+            link = link.format(page_number=i)
+            # request for webpage   , <Response [200]> only then web scraping
+            page = requests.get(link)
+            # add time delay so that website thinks that you are a human, also add random time delay
+            sec = r.randint(2, 7)
+            time.sleep(sec)
+            # parse the webpage and convert it a tree so that we can traverse
+            soup = bs4(page.content, 'html.parser')
+
+            for a in soup.find_all('div', class_="col _2wzgFH K0kLPL"):
+
+                name = a.find('p', class_='_2sc7ZR _2V5EHH')
+                if(name != None):
+                    name = name.get_text()
+
+                review = a.find('div', class_='t-ZTKy')
+                if(review != None):
+                    review = review.get_text()
+
+                keyword = a.find('p', class_='_2-N8zT')
+                if(keyword != None):
+                    keyword = keyword.get_text()
+
+                names.append(name)
+                reviews.append(review)
+                keywords.append(keyword)
+        df = pd.DataFrame({"names": names, "reviews": reviews, "keywords": keywords})
+        df.to_csv("C:/Users/manee/Desktop/flipkart_review.csv", index=False)
+
+    return render(request, 'webpages/flipkartReview.html')
 
 def gimages(request):
     if request.method == "POST":
@@ -264,3 +283,116 @@ def gimages(request):
         print('Download Completed!')
 
     return render(request, 'webpages/gimages.html')
+
+
+def twitter(request):
+    if request.method == "POST":
+        key = request.POST['keyword']
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.maximize_window()
+        driver.get("https://twitter.com/i/flow/login")
+        time.sleep(15)
+        email_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[5]/label/div/div[2]/div/input'
+        email = driver.find_element_by_xpath(email_xpath)
+        email.send_keys('chandku66099338')
+
+        next_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[6]/div'
+        next_button = driver.find_element_by_xpath(next_xpath)
+        next_button.click()
+
+        time.sleep(3)
+
+        pass_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[3]/div/label/div/div[2]/div/input'
+        password = driver.find_element_by_xpath(pass_xpath)
+        password.send_keys('natsudragneel')
+
+        login_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[2]/div/div/div'
+        login_button = driver.find_element_by_xpath(login_xpath)
+        login_button.click()
+
+
+        time.sleep(3)
+
+        explore_xpath = '//*[@id="react-root"]/div/div/div[2]/header/div/div/div/div[1]/div[2]/nav/a[2]/div'
+        explore = driver.find_element_by_xpath(explore_xpath)
+        explore.click()
+
+        time.sleep(3)
+
+        search_xpath = '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[1]/div[1]/div/div/div/div/div[1]/div[2]/div/div/div/form/div[1]/div/div/label/div[2]/div/input'
+        search = driver.find_element_by_xpath(search_xpath)
+        search.send_keys(key)
+        search.submit()
+
+        time.sleep(5)
+
+        prev_height = driver.execute_script('return document.body.scrollHeight')
+        for i in range(0, 15):   # scroll only twice.
+            driver.execute_script('window.scrollTo(0,document.body.scrollHeight);')
+            time.sleep(3)
+            new_height = driver.execute_script('return document.body.scrollHeight')
+            if new_height == prev_height:
+                break
+
+
+        tweet_divs = driver.page_source
+        obj = bs4(tweet_divs, "html.parser")
+
+
+        names = []
+        tweets = []
+        comments = []
+        retweets = []
+        likes = []
+        dates = []
+        users = []
+        # css-1dbjc4n r-1iusvr4 r-16y2uox r-1777fci r-kzbkwu
+        container = obj.find_all(
+            'div', class_='css-1dbjc4n r-1iusvr4 r-16y2uox r-1777fci r-kzbkwu')
+        for i in container:
+            sub = i.find_all('span', class_='r-qvutc0')
+            try:
+                name = sub[1].get_text()
+            except:
+                name = None
+            try:
+                user = sub[2].get_text()
+            except:
+                user = None
+            try:
+                tweet = sub[4].get_text()
+            except:
+                tweet = None
+            try:
+                comment = sub[-6].get_text()
+            except:
+                comment = None
+            try:
+                retweet = sub[-4].get_text()
+            except:
+                retweet = None
+            try:
+                like = sub[-1].get_text()
+            except:
+                like = None
+
+            names.append(name)
+            tweets.append(tweet)
+            comments.append(comment)
+            retweets.append(retweet)
+            likes.append(like)
+            users.append(user)
+        df = pd.DataFrame({"Name": names, "users": users, "tweets": tweets,
+                        "comments": comments, "retweets": retweets, "likes": likes})
+        df.to_csv("C:/Users/manee/Desktop/twitter.csv", index=False)
+
+
+
+
+    return render(request, 'webpages/twitter.html')
+
+
+
+
+
+
