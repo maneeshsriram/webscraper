@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<body>
+
+    
+    
+
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 mt-5">
+                {% include 'messages.html' %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mt-5">
+                <div class="display-3 font-weight-bold text-center"> Web Scraping Made Easy </div>
+                <div class="text-center text-muted mt-4" style="font-size: x-large;">Extract data from the website
+                    without any code</div>
+                <div class="text-center text-muted " style="font-size: x-large;">Make use of templates to make the work
+                    even more easier.</div>
+                <div class="text-center mt-4"><a href=""><button type="button" class="btn btn-danger btn-lg px-5 py-3"
+                            style="font-size:x-large;">Try Auto Analysis now</button></a></div>
+
+            </div>
+            <div class="col-md-6 mt-5">
+                <img src="{% static './img/img.png' %}" alt="" style="height: 22rem; width:100%;">
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid mt-5" style="background-color: black;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mt-5">
+                    <video width="100%" height="400px" autoplay loop>
+                        <source src="{% static './img/Web.mp4' %}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="howto" style="background-color: #f1c40f;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center display-4 mt-5" style="font-weight: 400;">
+                    Extract data in 3 steps
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class=" mt-4  pl-3 py-3 step"
+                        style="font-size:x-large;background-color: black;color: #f1c40f;width: 80%;border-radius: 6px;height: 4.5rem;">
+                        1)Choose a template given</div><br>
+                    <div class=" mt-4  pl-3 py-3 step"
+                        style="font-size:x-large;background-color: black;color: #f1c40f;width: 80%;border-radius: 6px;height: 4.5rem;">
+                        2)Enter a link so as to scrape data</div><br>
+                    <div class=" mt-4  pl-3 py-3 step mb-5"
+                        style="font-size:x-large;background-color: black;color: #f1c40f;width: 80%;border-radius: 6px;height: 4.5rem;">
+                        3)Run the extraction and get data</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="working" style="background-color: #16a085;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center display-4 mt-5" style="font-weight: 400;">
+                    How does it work?
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center mt-5 text-white mb-5" style="font-size: x-large;font-style: oblique;">
+                    With the help of <span style="color: black;font-size: xx-large;">Beautifulsoup4</span>
+                    and <span style="color: black;font-size: xx-large;">Request</span> libraries
+                    , our model scrapes the data from the website. By providing readymade templates, things
+                    become even more easier. Hence without using any code you can scrape the website.
+                    Currently few templates are available with new updates you will have access to new
+                    templates.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5" id="template">
+        <div class="row">
+            <div class="col-md-12 text-center display-4 mb-2" style="font-weight:400;">
+                Templates
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center text-muted mb-5" style="font-weight:400;font-size: x-large;">
+                Choose a template
+            </div>
+        </div>
+
+        <!-- Nav pills -->
+        <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="pill" href="#all">All</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#ecom">E-com</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#social">Social</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="all" class="container tab-pane active"><br>
+                <h3>All</h3>
+                <a href="{% url 'ebay' %}">
+                    <img src="https://www.prospect-hospice.net/wp-content/uploads/2018/12/ebay-logo-01.jpg" alt=""
+                        style="height: 10rem; width: 10rem;">
+                </a>
+                <a href="{% url 'gimages' %}">
+                        <img
+                        src="https://cdn.vox-cdn.com/thumbor/Pkmq1nm3skO0-j693JTMd7RL0Zk=/0x0:2012x1341/1200x800/filters:focal(0x0:2012x1341)/cdn.vox-cdn.com/uploads/chorus_image/image/47070706/google2.0.0.jpg"
+                        alt="" style="height: 10rem; width: 10rem;">
+                </a>
+                <a href="{% url 'flipkart' %}">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrVj_I9jhnN-jOukpO5wFzs9T7ycGd3tnVpcknCY4_36pdFcb2RNbOmQdOFBVi0Mtv2tk&usqp=CAU"
+                            alt="" style="height: 10rem; width: 10rem;">
+                </a>
+                <a href="">
+                    <img
+                        src="https://static01.nyt.com/images/2014/08/10/magazine/10wmt/10wmt-superJumbo-v4.jpg" alt=""
+                        style="height: 10rem; width: 10rem;">
+                </a>
+
+            </div>
+            <div id="ecom" class="container tab-pane fade"><br>
+                <h3>E-Com</h3>
+                <a href="">
+                    <img src="https://www.prospect-hospice.net/wp-content/uploads/2018/12/ebay-logo-01.jpg" alt=""
+                        style="height: 10rem; width: 10rem;">
+                </a>
+                <a href="">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrVj_I9jhnN-jOukpO5wFzs9T7ycGd3tnVpcknCY4_36pdFcb2RNbOmQdOFBVi0Mtv2tk&usqp=CAU"
+                        alt="" style="height: 10rem; width: 10rem;">
+                </a>
+            </div>
+            <div id="social" class="container tab-pane fade"><br>
+                <h3>Social</h3>
+                <a href="">
+                    <img src="https://static01.nyt.com/images/2014/08/10/magazine/10wmt/10wmt-superJumbo-v4.jpg" alt=""
+                        style="height: 10rem; width: 10rem;">
+                </a>
+            </div>
+        </div>
+    </div>
+
+<div class="m-5 p-3"></div>
+
+                <div class="row mt-5 pt-5">
+                    <div class="col-md-12 text-center display-4 mb-2" style="font-weight:400;">
+                        Smart Scraper
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center text-muted mb-5" style="font-weight:400;font-size: x-large;">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur molestias quia, officia temporibus sed optio?
+                    </div>
+                </div>
+
+</body>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,11 @@
+::selection {
+        background: #48dbfb;
+}
+
+.step:hover {
+    transform: scale(1.1);
+}
+
+html {
+scroll-behavior: smooth;
+}
