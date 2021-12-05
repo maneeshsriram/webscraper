@@ -113,6 +113,9 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="pill" href="#social">Social</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#images">Images</a>
+            </li>
         </ul>
 
         <!-- Tab panes -->
@@ -120,53 +123,60 @@
             <div id="all" class="container tab-pane active"><br>
                 <h3>All</h3>
                 <a href="{% url 'ebay' %}">
-                    <img src="https://www.prospect-hospice.net/wp-content/uploads/2018/12/ebay-logo-01.jpg" alt=""
+                    <img src="https://thumbs.dreamstime.com/b/ebay-logotype-printed-paper-black-background-moscow-russia-august-inc-american-multinational-e-commerce-corporation-based-122769130.jpg" alt=""
                         style="height: 10rem; width: 10rem;">
-                </a>
-                <a href="{% url 'gimages' %}">
-                        <img
-                        src="https://cdn.vox-cdn.com/thumbor/Pkmq1nm3skO0-j693JTMd7RL0Zk=/0x0:2012x1341/1200x800/filters:focal(0x0:2012x1341)/cdn.vox-cdn.com/uploads/chorus_image/image/47070706/google2.0.0.jpg"
-                        alt="" style="height: 10rem; width: 10rem;">
                 </a>
                 <a href="{% url 'flipkart' %}">
                         <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrVj_I9jhnN-jOukpO5wFzs9T7ycGd3tnVpcknCY4_36pdFcb2RNbOmQdOFBVi0Mtv2tk&usqp=CAU"
+                            src="https://media.glassdoor.com/sqll/300494/flipkart-com-squarelogo-1433217726546.png"
                             alt="" style="height: 10rem; width: 10rem;">
+                </a>
+                <a href="{% url 'gimages' %}">
+                        <img
+                        src="https://1000logos.net/wp-content/uploads/2016/11/New-Google-Logo.jpg"
+                        alt="" style="height: 10rem; width: 10rem;">
                 </a>
                 <a href="{% url 'twitter' %}">
                     <img
-                        src="https://static01.nyt.com/images/2014/08/10/magazine/10wmt/10wmt-superJumbo-v4.jpg" alt=""
+                        src="https://cdn-icons-png.flaticon.com/512/124/124021.png" alt=""
                         style="height: 10rem; width: 10rem;">
                 </a>
                 <a href="{% url 'flipkartReview' %}">
                     <img
-                        src="https://www.infinitepowersolutions.com/wp-content/uploads/2016/08/flipkart.jpg" alt=""
+                        src="https://www.freepnglogos.com/uploads/flipkart-logo-png/flipkart-logo-basket-emblem-15.png" alt=""
                         style="height: 10rem; width: 10rem;">
                 </a>
                 
             </div>
             <div id="ecom" class="container tab-pane fade"><br>
-                <h3>E-Com</h3>
-                <a href="">
-                    <img src="https://www.prospect-hospice.net/wp-content/uploads/2018/12/ebay-logo-01.jpg" alt=""
+                <a href="{% url 'ebay' %}">
+                    <img src="https://thumbs.dreamstime.com/b/ebay-logotype-printed-paper-black-background-moscow-russia-august-inc-american-multinational-e-commerce-corporation-based-122769130.jpg"
+                        alt="" style="height: 10rem; width: 10rem;">
+                </a>
+                <a href="{% url 'flipkart' %}">
+                    <img src="https://media.glassdoor.com/sqll/300494/flipkart-com-squarelogo-1433217726546.png" alt=""
                         style="height: 10rem; width: 10rem;">
                 </a>
-                <a href="">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrVj_I9jhnN-jOukpO5wFzs9T7ycGd3tnVpcknCY4_36pdFcb2RNbOmQdOFBVi0Mtv2tk&usqp=CAU"
-                        alt="" style="height: 10rem; width: 10rem;">
+                <a href="{% url 'flipkartReview' %}">
+                    <img src="https://www.freepnglogos.com/uploads/flipkart-logo-png/flipkart-logo-basket-emblem-15.png" alt=""
+                        style="height: 10rem; width: 10rem;">
                 </a>
             </div>
             <div id="social" class="container tab-pane fade"><br>
                 <h3>Social</h3>
-                <a href="">
-                    <img src="https://static01.nyt.com/images/2014/08/10/magazine/10wmt/10wmt-superJumbo-v4.jpg" alt=""
+                <a href="{% url 'twitter' %}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" alt="" style="height: 10rem; width: 10rem;">
+                </a>
+            </div>
+            <div id="images" class="container tab-pane fade"><br>
+                <h3>Images</h3>
+                <a href="{% url 'gimages' %}">
+                    <img src="https://1000logos.net/wp-content/uploads/2016/11/New-Google-Logo.jpg" alt=""
                         style="height: 10rem; width: 10rem;">
                 </a>
             </div>
         </div>
     </div>
-
-<div class="m-5 p-3"></div>
 
                 <div class="row mt-5 pt-5">
                     <div class="col-md-12 text-center display-4 mb-2" style="font-weight:400;">
@@ -178,8 +188,8 @@
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur molestias quia, officia temporibus sed optio?
                     </div>
                 </div>
-                <a href="{% url 'ebay' %}" class="pl-5 ml-5">
-                        <img src="https://tourismhr.ca/wp-content/uploads/smart-RGB-1024x1024.png" alt=""
+                <a style="margin-left: 590px;" href="{% url 'smart' %}">
+                        <img src="https://www.ngmn.org/wp-content/uploads/Logos/Smart_500x500.jpg" alt=""
                             style="height: 10rem; width: 10rem;">
                 </a>
 

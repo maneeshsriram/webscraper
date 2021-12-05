@@ -14,12 +14,13 @@
             <input name="keyword" type="text" name="" required>
             <label>Enter keyword to be searched</label>
         </div>
-        <button type="submit" style="outline: none; border: none; background-color: transparent; cursor: pointer;">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Submit
+        <button type="submit"
+            style="margin-left: 35px; outline: none; border: none; background-color: transparent; cursor: pointer;">
+            Download CSV
+        </button>
+        <button type="submit" formaction="{% url 'Jtwitter' %}"
+            style="margin-left: 35px; outline: none; border: none; background-color: transparent; cursor: pointer;">
+            Download JSON
         </button>
     </form>
 </div>

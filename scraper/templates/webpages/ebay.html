@@ -8,7 +8,7 @@
 
 
 <div class="login-box">
-    <h2>Enter the below details</h2>
+    <h2>Ebay Scarper</h2>
     <form method="POST" action="{% url 'ebay' %}">
         {% csrf_token %}
         <div class="user-box">
@@ -19,12 +19,11 @@
             <input name="pages" type="number" min="1" max="5" name="" required>
             <label>Number of pages</label>
         </div>
-        <button type="submit" style="outline: none; border: none; background-color: transparent; cursor: pointer;">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Submit
+        <button type="submit" style="margin-left: 35px; outline: none; border: none; background-color: transparent; cursor: pointer;">
+            Download CSV
+        </button>
+        <button type="submit" formaction="{% url 'Jebay' %}" style="margin-left: 35px; outline: none; border: none; background-color: transparent; cursor: pointer;">
+          Download JSON
         </button>
     </form>
 </div>

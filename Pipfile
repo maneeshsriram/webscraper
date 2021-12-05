@@ -11,6 +11,8 @@ pandas = "*"
 requests = "*"
 selenium = "*"
 webdriver-manager = "*"
+loader = "*"
+autoscraper = "*"
 
 [dev-packages]
 
