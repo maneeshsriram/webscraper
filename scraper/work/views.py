@@ -14,6 +14,8 @@ from autoscraper import AutoScraper
 from django.core.serializers import serialize
 
 
+
+
 def ebay(request):
     if request.method == "POST":
         link = request.POST['url']
@@ -103,7 +105,6 @@ def ebay(request):
 
     return render(request, 'webpages/ebay.html')
 
-
 def Jebay(request):
     if request.method == "POST":
         link = request.POST['url']
@@ -187,6 +188,7 @@ def Jebay(request):
             return response
 
     return render(request, 'webpages/ebay.html')
+
 
 
 def flipkart(request):
@@ -297,8 +299,6 @@ def flipkart(request):
 
     return render(request, 'webpages/flipkart.html')
 
-
-
 def Jflipkart(request):
     if request.method == "POST":
         link = request.POST['url']
@@ -404,6 +404,7 @@ def Jflipkart(request):
     return render(request, 'webpages/flipkart.html')
 
 
+
 def flipkartReview(request):
     if request.method == "POST":
         link = request.POST['url']
@@ -498,55 +499,6 @@ def JflipkartReview(request):
 
     return render(request, 'webpages/flipkartReview.html')
 
-
-def gimages(request):
-    if request.method == "POST":
-        Google_Image = 'https://www.google.com/search?site=&tbm=isch&source=hp&biw=1873&bih=990&'
-        data = request.POST['keyowrd']
-        num_images = int(request.POST['images'])
-
-        u_agnt = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
-            'Accept-Encoding': 'none',
-            'Accept-Language': 'en-US,en;q=0.8',
-            'Connection': 'keep-alive',
-        }  # write: 'my user agent' in browser to get your browser user agent details
-        Image_Folder = 'Images_1'
-
-        if not os.path.exists(Image_Folder):
-            os.mkdir(Image_Folder)
-
-        search_url = Google_Image + 'q=' + data  # 'q=' because its a query
-        response = requests.get(search_url, headers=u_agnt)
-        html = response.text  # To get actual result i.e. to read the html data in text mode
-
-        b_soup = bs4(html, 'html.parser')
-        results = b_soup.findAll('img', {'class': 'rg_i Q4LuWd'})
-
-        count = 0
-        imagelinks = []
-        for res in results:
-            try:
-                link = res['data-src']
-                imagelinks.append(link)
-                count = count + 1
-                if (count >= num_images):
-                    break
-            except KeyError:
-                continue
-        
-        print(f'Found {len(imagelinks)} images')
-        print('Start downloading...')
-
-        for i, imagelink in enumerate(imagelinks):
-            response = requests.get(imagelink)
-            imagename = Image_Folder + '/' + data + str(i+1) + '.jpg'
-            with open(imagename, 'wb') as file:
-                file.write(response.content)
-
-    return render(request, 'webpages/gimages.html')
 
 
 def twitter(request):
@@ -662,7 +614,6 @@ def twitter(request):
 
     return render(request, 'webpages/twitter.html')
 
-
 def Jtwitter(request):
     if request.method == "POST":
         key = request.POST['keyword']
@@ -771,6 +722,58 @@ def Jtwitter(request):
     return render(request, 'webpages/twitter.html')
 
 
+
+def gimages(request):
+    if request.method == "POST":
+        Google_Image = 'https://www.google.com/search?site=&tbm=isch&source=hp&biw=1873&bih=990&'
+        data = request.POST['keyowrd']
+        num_images = int(request.POST['images'])
+
+        u_agnt = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+            'Accept-Encoding': 'none',
+            'Accept-Language': 'en-US,en;q=0.8',
+            'Connection': 'keep-alive',
+        }  # write: 'my user agent' in browser to get your browser user agent details
+        Image_Folder = 'Images_1'
+
+        if not os.path.exists(Image_Folder):
+            os.mkdir(Image_Folder)
+
+        search_url = Google_Image + 'q=' + data  # 'q=' because its a query
+        response = requests.get(search_url, headers=u_agnt)
+        html = response.text  # To get actual result i.e. to read the html data in text mode
+
+        b_soup = bs4(html, 'html.parser')
+        results = b_soup.findAll('img', {'class': 'rg_i Q4LuWd'})
+
+        count = 0
+        imagelinks = []
+        for res in results:
+            try:
+                link = res['data-src']
+                imagelinks.append(link)
+                count = count + 1
+                if (count >= num_images):
+                    break
+            except KeyError:
+                continue
+        
+        print(f'Found {len(imagelinks)} images')
+        print('Start downloading...')
+
+        for i, imagelink in enumerate(imagelinks):
+            response = requests.get(imagelink)
+            imagename = Image_Folder + '/' + data + str(i+1) + '.jpg'
+            with open(imagename, 'wb') as file:
+                file.write(response.content)
+
+    return render(request, 'webpages/gimages.html')
+
+
+
 def smart(request):
     if request.method == "POST":
         url = request.POST['url']
@@ -780,13 +783,13 @@ def smart(request):
         scraper = AutoScraper()
         res = scraper.build(url, wanted_list)
         result = scraper.get_result_similar(url, grouped=True)
-        l = []
+        data = []
         for i in result.keys(): 
-            l.append(result[i])
-        data = {
-            'info' : l
-        }
-    return render(request, 'webpages/smart.html', data)
+            data.append(result[i])
+        response = HttpResponse(data, content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="smart.txt"'
+        return response
+    return render(request, 'webpages/smart.html')
 
 
 
