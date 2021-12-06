@@ -6,10 +6,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.maximize_window()
 driver.get("https://twitter.com/i/flow/login")
-time.sleep(15)
+time.sleep(5)
 email_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[5]/label/div/div[2]/div/input'
 email = driver.find_element_by_xpath(email_xpath)
-email.send_keys('chandku66099338')
+email.send_keys('maneeshsriram')
 
 next_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[6]/div'
 next_button = driver.find_element_by_xpath(next_xpath)
@@ -19,7 +19,7 @@ time.sleep(3)
 
 pass_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[3]/div/label/div/div[2]/div/input'
 password = driver.find_element_by_xpath(pass_xpath)
-password.send_keys('natsudragneel')
+password.send_keys('automatepass')
 
 login_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[2]/div/div/div'
 login_button = driver.find_element_by_xpath(login_xpath)
@@ -36,13 +36,13 @@ time.sleep(3)
 
 search_xpath = '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[1]/div[1]/div/div/div/div/div[1]/div[2]/div/div/div/form/div[1]/div/div/label/div[2]/div/input'
 search = driver.find_element_by_xpath(search_xpath)
-search.send_keys('cricket')
+search.send_keys('tadap')
 search.submit()
 
 time.sleep(5)
 
 prev_height = driver.execute_script('return document.body.scrollHeight')
-for i in range(0, 6):   # scroll only twice.
+for i in range(0, 1):   # scroll only twice.
     driver.execute_script('window.scrollTo(0,document.body.scrollHeight);')
     time.sleep(3)
     new_height = driver.execute_script('return document.body.scrollHeight')
@@ -75,7 +75,7 @@ for i in container:
     except:
         user = None
     try:
-        tweet = sub[4].get_text()
+        tweet = sub[4].get_text() + sub[5].get_text() + sub[6].get_text()
     except:
         tweet = None
     try:
