@@ -510,30 +510,32 @@ def twitter(request):
         time.sleep(15)
         email_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[5]/label/div/div[2]/div/input'
         email = driver.find_element_by_xpath(email_xpath)
-        email.send_keys('ManeeshSriram')
+
+        email.send_keys('chandku66099338')  # ManeeshSriram
 
         next_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[6]/div'
         next_button = driver.find_element_by_xpath(next_xpath)
         next_button.click()
 
-        time.sleep(3)
+        time.sleep(5)
 
         pass_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[3]/div/label/div/div[2]/div/input'
         password = driver.find_element_by_xpath(pass_xpath)
-        password.send_keys('automatepass')
+        password.send_keys('natsudragneel')  # automatepass
+
 
         login_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[2]/div/div/div'
         login_button = driver.find_element_by_xpath(login_xpath)
         login_button.click()
 
 
-        time.sleep(3)
+        time.sleep(5)
 
         explore_xpath = '//*[@id="react-root"]/div/div/div[2]/header/div/div/div/div[1]/div[2]/nav/a[2]/div'
         explore = driver.find_element_by_xpath(explore_xpath)
         explore.click()
 
-        time.sleep(3)
+        time.sleep(5)
 
         search_xpath = '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[1]/div[1]/div/div/div/div/div[1]/div[2]/div/div/div/form/div[1]/div/div/label/div[2]/div/input'
         search = driver.find_element_by_xpath(search_xpath)
@@ -543,7 +545,7 @@ def twitter(request):
         time.sleep(5)
 
         prev_height = driver.execute_script('return document.body.scrollHeight')
-        for i in range(0, 15):   # scroll only twice.
+        for i in range(0, 5):   # scroll only twice.
             driver.execute_script('window.scrollTo(0,document.body.scrollHeight);')
             time.sleep(3)
             new_height = driver.execute_script('return document.body.scrollHeight')
@@ -623,7 +625,7 @@ def Jtwitter(request):
         time.sleep(15)
         email_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[5]/label/div/div[2]/div/input'
         email = driver.find_element_by_xpath(email_xpath)
-        email.send_keys('ManeeshSriram')
+        email.send_keys('chandku66099338')  # ManeeshSriram
 
         next_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[6]/div'
         next_button = driver.find_element_by_xpath(next_xpath)
@@ -633,7 +635,7 @@ def Jtwitter(request):
 
         pass_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[3]/div/label/div/div[2]/div/input'
         password = driver.find_element_by_xpath(pass_xpath)
-        password.send_keys('automatepass')
+        password.send_keys('natsudragneel')  # automatepass
 
         login_xpath = '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[2]/div/div/div'
         login_button = driver.find_element_by_xpath(login_xpath)
@@ -656,7 +658,7 @@ def Jtwitter(request):
         time.sleep(5)
 
         prev_height = driver.execute_script('return document.body.scrollHeight')
-        for i in range(0, 15):   # scroll only twice.
+        for i in range(0, 4):   # scroll only twice.
             driver.execute_script('window.scrollTo(0,document.body.scrollHeight);')
             time.sleep(3)
             new_height = driver.execute_script('return document.body.scrollHeight')
